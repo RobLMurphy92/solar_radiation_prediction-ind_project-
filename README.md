@@ -1,10 +1,16 @@
 # Individual Project - Predicting Solar Radiation.
 <hr style="border-top: 10px groove blueviolet; margin-top: 1px; margin-bottom: 1px"></hr>
 
+
+
+![solar](https://atmosphere.copernicus.eu/sites/default/files/inline-images/solarpanels_small.png)
+
+
+
 #### Abstract
 The availability of Fossil Fuels is continuing to deplete due to hydrocarbons being finite. In the future as the renewable industry continues to grow it will eventually be necessary for individuals to predict when Solar Radiation levels will be adequate to utilize for daily use or industrial use.
 The main focus of this project is to see if with certain features a model can be created which accuratley predicts solar radiation levels.
-Utilizing a regression model, select features which had a correlation value greater than 20% wre utilized within a Tweedie Regressor model to predict radiation levels. The model peformed significantly better than the baseline and was proven valid.
+Utilizing a regression model, select features which had a correlation value greater than 20% were utilized within a Tweedie Regressor model to predict radiation levels. The model peformed significantly better than the baseline and was proven valid.
 
 
 
