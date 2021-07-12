@@ -48,14 +48,13 @@ Utilizing a regression model, select features which had a correlation value grea
 
 |Target|Datatype|Definition|
 |:-------|:--------|:----------|
-| Radiation| float64 | 
+|Radiation| 32686 non-null  float64 | watts per meter^2 |
 
 |Feature|Datatype|Definition|
 |:-------|:--------|:----------|
 |UNIXTime| 32686 non-null  int64 | 
 |Date| 32686 non-null datetime64[ns] | date in yyyy-mm-dd format |
 |Time| 32686 non-null  object | 24 Hour format |
-|Radiation| 32686 non-null  float64 | watts per meter^2 |
 |Temperature| 32686 non-null  int64 | temperature in Fahrenheit | 
 |Pressure| 32686 non-null  float64 | barometric pressure Hg (inch of mercury) |
 |Humidity| 32686 non-null  int64 | humidity percentage | 
