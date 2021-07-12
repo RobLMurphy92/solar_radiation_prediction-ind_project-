@@ -136,19 +136,34 @@ def get_germany_data(url, cached=False):
     return df
 
 
-def get_solar(url, cached=False):
+####################
+
+def solar_data():
+    '''
+    This function reads the solar_predictions data from the csv file which is available on kaggle.
+    link to data: https://www.kaggle.com/dronio/SolarEnergy?select=SolarPrediction.csv
+    '''
+    # Read in DataFrame from csv downloaded from kaggle.
+    df = pd.read_csv('SolarPrediction.csv')
+    
+    return df
+
+
+
+
+def get_solar(cached=False):
     '''
     This function reads in url for solar_prediction data and writes data to
     a csv file if cached == False or if cached == True reads in solar_df from a csv file, returns df.
     '''
-    solar_df = pd.read_csv(url)
-    if cached == False or os.path.isfile('aug_train.csv') == False:
+    solar_df = solar_data()
+    if os.path.isfile('SolarPrediction.csv') == False:
         # Read fresh data from db into a DataFrame.
-        df = aug_train_df
+        df = solar_df
         # Write DataFrame to a csv file.
-        df.to_csv('Solar_Prediction_final.csv')
+        df.to_csv('SolarPrediction.csv')
     else:
         # If csv file exists or cached == True, read in data from csv.
-        df = pd.read_csv('Solar_Prediction_final.csv', index_col=0)
+        df = pd.read_csv('SolarPrediction.csv', index_col=0)
     return df
 
