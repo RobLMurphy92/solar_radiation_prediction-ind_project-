@@ -29,44 +29,7 @@ warnings.filterwarnings("ignore")
 
 
 
-    
 
-
-###################### Prep Telco Data ######################
-
-def prep_zillow(df):
-    '''
-    This function take in the telco_churn data acquired by get_telco_data,
-    Returns prepped train, validate, and test dfs with embarked dummy vars,
-    deck dropped, and the mean of age imputed for Null values.
-    '''
-    df.set_index('parcelid', drop = True, inplace = True)
-
-    df = df[['bedroomcnt', 'bathroomcnt', 'calculatedfinishedsquarefeet','taxvaluedollarcnt']]
-    df.rename(columns = {'calculatedfinishedsquarefeet':'total_squareft','taxvaluedollarcnt': 'assessment_value'},  inplace = True)
-
-    #dropping duplicate values
-    df.drop_duplicates(inplace = True)
-    # so after reviewing the two columns taxvalue and sqrft, i feel comfortable dropping the NaN values
-    df.dropna(inplace = True)
-
-    #dropping outliers
-    df= df[(df['assessment_value'] < 1276040)& (df['assessment_value']>0)]
-    df= df[(df['total_squareft'] < 3882) & (df['total_squareft']>0)]
-    df = df[(df['bedroomcnt'] < 5.5) &  (df['bedroomcnt']>1.5)]
-    df= df[(df['bathroomcnt'] < 4.5) & (df['bathroomcnt']>0.5)]
-
-
-    #created additional columns to represent less than and greater than with 0 and 1 value
-    df['three_or_less_bedrooms']  =  pd.cut(x=df['bedroomcnt'], bins=[2, 3], right = True, include_lowest = True, labels = [1]).astype('object').fillna(0).astype('int')
-    df['four_or_more_bedrooms']  =  pd.cut(x=df['bedroomcnt'], bins=[4, 5], right = True, include_lowest = True, labels = [1]).astype('object').fillna(0).astype('int')
-    df['three_or_more_bathrooms']  =  pd.cut(x=df['bedroomcnt'], bins=[3, 4], right = True, include_lowest = True, labels = [1]).astype('object').fillna(0).astype('int')
-    df['two_half_or_less_bathrooms']  =  pd.cut(x=df['bedroomcnt'], bins=[1, 2.5], right = True, include_lowest = True, labels = [1]).astype('object').fillna(0).astype('int')
-    df.drop(columns = ['bathroomcnt', 'bedroomcnt'], inplace = True)
-    
-
-    
-    return df
 
 
 #function to look create df which shows records containing nulls
