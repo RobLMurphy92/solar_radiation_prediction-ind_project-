@@ -111,30 +111,8 @@ def combined_dataframes():
 
 
 
-
-def get_germany_data(url, cached=False):
-    '''
-    This function reads in url for germany data and writes data to
-    a csv file if cached == False or if cached == True reads in germany df from
-    a csv file, returns df.
-    '''
-    germany_df = pd.read_csv(url)
-    
-    if cached == False or os.path.isfile('germany_df.csv') == False:
-        
-        # Read fresh data from db into a DataFrame.
-        df = germany_df
-        
-        # Write DataFrame to a csv file.
-        df.to_csv('germany_df.csv')
-        
-    else:
-        
-        # If csv file exists or cached == True, read in data from csv.
-        df = pd.read_csv('germany_df.csv', index_col=0)
-        
-    return df
-
+###################
+#Acquire Solar
 
 ####################
 
@@ -164,6 +142,6 @@ def get_solar(cached=False):
         df.to_csv('SolarPrediction.csv')
     else:
         # If csv file exists or cached == True, read in data from csv.
-        df = pd.read_csv('SolarPrediction.csv', index_col=0)
+        df = pd.read_csv('SolarPrediction.csv')
     return df
 
