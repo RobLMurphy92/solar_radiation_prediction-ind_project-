@@ -10,7 +10,7 @@
 
 #### Abstract
 The availability of Fossil Fuels is continuing to deplete due to hydrocarbons being finite. In the future as the renewable industry continues to grow it will eventually be necessary for individuals to predict when solar irradiance will be adequate to utilize for daily use or industrial use.
-The main focus of this project is to see if with certain features a model can be created which accuratley predicts solar irradiance.
+The main focus of the project is to see if with certain features a model can be created which accurately predicts solar irradiance.
 Utilizing a regression model, select features which had a correlation value greater than 20% were utilized within a 2nd Degree Polynomial model to predict solar irradiance. The model peformed significantly better than the baseline and was proven valid.
 
 
