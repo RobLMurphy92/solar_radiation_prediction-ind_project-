@@ -1,4 +1,4 @@
-# Individual Project - Predicting Solar Radiation.
+# Individual Project - Predicting Solar Irradiance.
 <hr style="border-top: 10px groove blueviolet; margin-top: 1px; margin-bottom: 1px"></hr>
 
 
@@ -9,8 +9,8 @@
 
 #### Abstract
 The availability of Fossil Fuels is continuing to deplete due to hydrocarbons being finite. In the future as the renewable industry continues to grow it will eventually be necessary for individuals to predict when Solar Radiation levels will be adequate to utilize for daily use or industrial use.
-The main focus of this project is to see if with certain features a model can be created which accuratley predicts solar radiation levels.
-Utilizing a regression model, select features which had a correlation value greater than 20% were utilized within a Tweedie Regressor model to predict radiation levels. The model peformed significantly better than the baseline and was proven valid.
+The main focus of this project is to see if with certain features a model can be created which accuratley predicts solar irradiance.
+Utilizing a regression model, select features which had a correlation value greater than 20% were utilized within a 2nd Degree Polynomial model to predict solar irradiance. The model peformed significantly better than the baseline and was proven valid.
 
 
 
@@ -48,7 +48,7 @@ Utilizing a regression model, select features which had a correlation value grea
 
 |Target|Datatype|Definition|
 |:-------|:--------|:----------|
-|Radiation| 32686 non-null  float64 | watts per meter^2 |
+|Solar Irradiance| 32686 non-null  float64 | watts per meter^2 |
 
 |Feature|Datatype|Definition|
 |:-------|:--------|:----------|
@@ -92,7 +92,7 @@ Utilizing a regression model, select features which had a correlation value grea
 > - Prep work will be basic dropping of nulls and not worrying about outliers, will see if any datatypes need to be changed.
 > - Investigate any missing values also.
 > - Explore the dataset on unscaled data, the target variable will be radiation, will utilize univariate, bivariate and multivar.
-> - Will utilize feature engineering to see which features will be useful in prediciton radiation level.
+> - Will utilize feature engineering to see which features will be useful in prediciton solar irradiance.
 > - Target is continous so this will be a regression model.
 > - Will utilize 4 models and compare the performance, 
 > - Will evaluate on unscaled train, validate datasets.
@@ -107,23 +107,23 @@ Utilizing a regression model, select features which had a correlation value grea
 
 > - **Hypothesis 1 -** I rejected the Null Hypothesis.
 > - alpha = .05
-> - Hypothesis Null : 'there is no linear correlation between Radiation and Humidity'.
-> - Hypothesis Alternative : 'There is a relationship between Radiation and Humidity'.
+> - Hypothesis Null : 'there is no linear correlation between solar irradiance and Humidity'.
+> - Hypothesis Alternative : 'There is a relationship between solar irradianceand Humidity'.
 
 > - **Hypothesis 2 -** I rejected the Null Hypothesis.
 > - alpha = .05
-> - Hypothesis Null : 'there is no linear correlation between Radiation and Pressure'.
-> - Hypothesis Alternative : 'There is a relationship between Radiation and Pressure'.
+> - Hypothesis Null : 'there is no linear correlation between solar irradiance and Pressure'.
+> - Hypothesis Alternative : 'There is a relationship between solar irradiance and Pressure'.
 
 > - **Hypothesis 3 -** I rejected the Null Hypothesis.
 > - alpha = .05
-> - Hypothesis Null : 'There is no difference in radiation levels for timeframe 10:00-12:00 and not in the timeframe 10:00-12:00'
-> - Hypothesis Alternative : 'There is a difference in radiation levels for timeframe 10:00-12:00 and not in the timeframe 10:00-12:00'
+> - Hypothesis Null : 'There is no difference in solar irradiance for timeframe 10:00-12:00 and not in the timeframe 10:00-12:00'
+> - Hypothesis Alternative : 'There is a difference in solar irradiance for timeframe 10:00-12:00 and not in the timeframe 10:00-12:00'
 
 > - **Hypothesis 4 -** I rejected the Null Hypothesis.
 > - alpha = .05
-> - Hypothesis Null : 'There is no significant difference in radiation levels for winds blowing North and the overal population mean.'
-> - Hypothesis Alternative : "There is a significant difference in the logerrors for those who have four or more bedrooms than those who dont.
+> - Hypothesis Null : 'There is no significant difference in solar irradiance for winds blowing North and the overal population mean.'
+> - Hypothesis Alternative : 'There is significant difference in solar irradiance for winds blowing North and the overal population mean.'
 
 
 ### Reproduce My Project:
