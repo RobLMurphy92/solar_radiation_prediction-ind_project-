@@ -8,7 +8,7 @@
 
 
 #### Abstract
-The availability of Fossil Fuels is continuing to deplete due to hydrocarbons being finite. In the future as the renewable industry continues to grow it will eventually be necessary for individuals to predict when Solar Radiation levels will be adequate to utilize for daily use or industrial use.
+The availability of Fossil Fuels is continuing to deplete due to hydrocarbons being finite. In the future as the renewable industry continues to grow it will eventually be necessary for individuals to predict when solar irradiance will be adequate to utilize for daily use or industrial use.
 The main focus of this project is to see if with certain features a model can be created which accuratley predicts solar irradiance.
 Utilizing a regression model, select features which had a correlation value greater than 20% were utilized within a 2nd Degree Polynomial model to predict solar irradiance. The model peformed significantly better than the baseline and was proven valid.
 
@@ -17,14 +17,14 @@ Utilizing a regression model, select features which had a correlation value grea
 
 #### Project Objectives
 > - Document code, process (data acquistion, preparation, exploratory data analysis utilizing clustering and statistical testing, modeling, and model evaluation), findings, and key takeaways in a Jupyter Notebook report.
-> - Create a Model which can accurately predicts Solar Radiation.
+> - Create a Model which can accurately predicts solar irradiance.
 
 
 
 
 #### Goals
-> - Find features which can predict Radiation Levels
-> - Construct a model that accurately predicts Raditation levels
+> - Find features which can predict solar irradiance
+> - Construct a model that accurately predicts solar irradiance.
 > - Document your process well enough to be presented or read like a report.
 > - Create final notebook which will include code and markdowns.
 
