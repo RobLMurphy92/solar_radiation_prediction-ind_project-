@@ -3,7 +3,8 @@
 
 
 
-![solar](https://atmosphere.copernicus.eu/sites/default/files/inline-images/solarpanels_small.png)
+![Solar](https://user-images.githubusercontent.com/80664326/125516146-d7cba7ae-8418-4069-a9a7-446551d86ecc.png)
+
 
 
 
