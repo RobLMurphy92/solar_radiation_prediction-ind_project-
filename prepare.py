@@ -60,6 +60,96 @@ def create_dummies(df):
 
     return df
 
+####################################
+                #outlier finding###
+#####################################
+
+def outlier_bound_calculation(df, variable):
+    '''
+    calcualtes the lower and upper bound to locate outliers in variables
+    '''
+    quartile1, quartile3 = np.percentile(df[variable], [25,75])
+    IQR_value = quartile3 - quartile1
+    lower_bound = quartile1 - (1.5 * IQR_value)
+    upper_bound = quartile3 + (1.5 * IQR_value)
+    '''
+    returns the lowerbound and upperbound values
+    '''
+    return print(f'For {variable} the lower bound is {lower_bound} and  upper bound is {upper_bound}')
+
+
+def detect_outliers(df, k, col_list):
+    ''' get upper and lower bound for list of columns in a dataframe 
+        if desired return that dataframe with the outliers removed
+    '''
+    
+    odf = pd.DataFrame()
+    
+    for col in col_list:
+
+        q1, q2, q3 = df[f'{col}'].quantile([.25, .5, .75])  # get quartiles
+        
+        iqr = q3 - q1   # calculate interquartile range
+        
+        upper_bound = q3 + k * iqr   # get upper bound
+        lower_bound = q1 - k * iqr   # get lower bound
+        
+        # print each col and upper and lower bound for each column
+        print(f"{col}: Median = {q2} lower_bound = {lower_bound} upper_bound = {upper_bound}")
+
+        # return dataframe of outliers
+        odf = odf.append(df[(df[f'{col}'] < lower_bound) | (df[f'{col}'] > upper_bound)])
+            
+    return odf
+
+
+
+def show_outliers(df, k, columns):
+    '''
+    calculates the lower and upper bound to locate outliers and displays them
+    recommended k be 1.5 and entered as integer
+    '''
+    for i in columns:
+        quartile1, quartile3 = np.percentile(df[i], [25,75])
+        IQR_value = quartile3 - quartile1
+        lower_bound = (quartile1 - (k * IQR_value))
+        upper_bound = (quartile3 + (k * IQR_value))
+        print(f'For {i} the lower bound is {lower_bound} and  upper bound is {upper_bound}')
+        
+        
+def remove_outliers(df, k, columns):
+    '''
+    calculates the lower and upper bound to locate outliers in variables and then removes them.
+    recommended k be 1.5 and entered as integer
+    '''
+    for i in columns:
+        quartile1, quartile3 = np.percentile(df[i], [25,75])
+        IQR_value = quartile3 - quartile1
+        lower_bound = (quartile1 - (k * IQR_value))
+        upper_bound = (quartile3 + (k * IQR_value))
+        print(f'For {i} the lower bound is {lower_bound} and  upper bound is {upper_bound}')
+        df = df[(df[i] <= upper_bound) & (df[i] >= lower_bound)]
+        print('-----------------')
+        print('Dataframe now has ', df.shape[0], 'rows and ', df.shape[1], 'columns')
+    return df
+
+def remove_outliers_noprint(df, k, columns):
+    '''
+    calculates the lower and upper bound to locate outliers in variables and then removes them.
+    recommended k be 1.5 and entered as integer
+    '''
+    for i in columns:
+        quartile1, quartile3 = np.percentile(df[i], [25,75])
+        IQR_value = quartile3 - quartile1
+        lower_bound = (quartile1 - (k * IQR_value))
+        upper_bound = (quartile3 + (k * IQR_value))
+
+        df = df[(df[i] <= upper_bound) & (df[i] >= lower_bound)]
+        
+    return df
+        
+        
+
 
     
   
@@ -302,7 +392,7 @@ def prep_solar(df):
     # will not utilize UNIXTime
     df.drop(columns = 'UNIXTime', inplace = True)
     # Data Needs to be renamed to Date
-    df.rename(columns = {'Data':'Date'}, inplace = True)
+    df.rename(columns = {'Data':'Date', 'Radiation':'solar_irradiance'}, inplace = True)
     
     #added in column in datetime format, will convert these new columns to a hour and min then change to string and combine them.
     df['Date'] = pd.to_datetime(df.Date)
@@ -336,6 +426,10 @@ def prep_solar(df):
     df['day'] = np.where((df.Time < df.TimeSunSet) & (df.Time > df.TimeSunRise), 1, 0)
     #dropping Sunset and Rise columns
     df.drop(columns = ['TimeSunRise', 'TimeSunSet'],inplace = True)
+    ## remove outliers
+    cols = df.drop(columns = ['day','Date','Time'])
+    cols = cols.columns.tolist()
+    df = remove_outliers(df,1.5,cols)
     
     #binning degrees to have specificy wind direction
     df['wind_direction'] = pd.cut(df['WindDirection(Degrees)'], [0,23,68,113,158,203,248,293,336,360], labels = ['N','NE','E','SE','S','SW','W','NW','N'], ordered = False)
